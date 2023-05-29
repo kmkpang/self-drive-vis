@@ -24,3 +24,9 @@ export const getRoadCondition = () =>
     .then((e) => e.data);
 
 export const setTestScenario = (data) => supabase.from('test_scenario').insert([data]);
+
+export const getTestScenario = () =>
+  supabase
+    .from('test_scenario')
+    .select()
+    .then((e) => e.data);

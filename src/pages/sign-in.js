@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <Container>
       <Stack minHeight="100vh" alignItems="center" justifyContent="center">
-        <SignIn />
+        <SignIn afterSignInUrl={'/'} />
       </Stack>
     </Container>
   );
