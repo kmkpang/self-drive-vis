@@ -13,7 +13,7 @@ export default function AuthGuard(props) {
   useQuery({
     queryKey: ['getCurrentUserInfo'],
     queryFn: getCurrentUserInfo,
-    onSuccess: (user) => console.log(user),
+    onSuccess: (user) => setUser(user),
   });
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function AuthGuard(props) {
     if (!cookies.__clerk_db_jwt) {
       router.push('/sign-in');
     }
-  }, [cookies.__clerk_db_jwt, props.disabled, router]);
+  }, [router]);
 
   return props.children;
 }

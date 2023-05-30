@@ -17,12 +17,11 @@ export default function Home() {
 }
 
 function RenderTable() {
+  const router = useRouter();
   const { data } = useQuery({
     queryKey: ['getTestScenario'],
     queryFn: getTestScenario,
   });
-
-  console.log(data?.map((row, index) => console.log(row, index)));
 
   return (
     <Paper sx={{ p: 3 }}>
@@ -36,13 +35,22 @@ function RenderTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data?.map((row, index) => (
-              <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            {data?.map((row) => (
+              <TableRow
+                key={row?.id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                onClick={() =>
+                  router.push({
+                    pathname: '/testScenario/[pid]',
+                    query: { pid: row?.id },
+                  })
+                }
+              >
                 <TableCell component="th" scope="row">
-                  {index + 1}
+                  {row?.id}
                 </TableCell>
                 <TableCell>{row.function_name}</TableCell>
-                <TableCell>{row.overlap_volume}</TableCell>
+                <TableCell>{`${row.overlap_volume}%`}</TableCell>
               </TableRow>
             ))}
           </TableBody>
