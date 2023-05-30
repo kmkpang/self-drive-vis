@@ -34,6 +34,14 @@ export default function App(props) {
           <QueryClientProvider client={queryClient}>
             <ModalProvider>
               <ClerkProvider {...pageProps}>
+                {/* <div>
+                  <SignedIn>
+                    <Component {...pageProps} />
+                  </SignedIn>
+                  <SignedOut>
+                    {publicPages.includes(pathname) ? <Component {...pageProps} /> : <RedirectToSignUp />}
+                  </SignedOut>
+                </div> */}
                 <div>
                   <Toaster />
                   {getLayout(<Component {...pageProps} />)}
