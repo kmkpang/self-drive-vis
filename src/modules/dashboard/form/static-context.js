@@ -1,7 +1,5 @@
 import { Stack, Typography } from '@mui/material';
-import { useQuery } from '@tanstack/react-query';
-import { SelectElement, TextFieldElement } from 'react-hook-form-mui';
-import { getIntersectionType, getRoadCondition, getWeatherOptions } from 'services/supabase.service';
+import { TextFieldElement } from 'react-hook-form-mui';
 
 export function StaticContextForm() {
   return (
@@ -15,37 +13,14 @@ export function StaticContextForm() {
           <TextFieldElement name="traffic_sign" label="Traffic Sign" fullWidth />
         </Stack>
         <Stack direction="row" spacing={2}>
-          <WeatherFieldElement />
+          <TextFieldElement name="weather" label="Weather" fullWidth />
           <TextFieldElement name="uav_coordinates" label="UAV Coordinates" fullWidth />
         </Stack>
         <Stack direction="row" spacing={2}>
-          <IntersectionTypeFieldElement />
-          <RoadConditionFieldElement />
+          <TextFieldElement label="Type of Intersection" name="intersection_type" fullWidth />
+          <TextFieldElement label="Road Condition" name="road_condition" fullWidth />
         </Stack>
       </Stack>
     </>
   );
-}
-
-function WeatherFieldElement() {
-  const { data } = useQuery({ queryKey: ['getTrafficSign'], queryFn: getWeatherOptions });
-
-  return <SelectElement label="weather" name="weather" options={data ?? []} sx={{ width: '100%' }} />;
-}
-function IntersectionTypeFieldElement() {
-  const { data } = useQuery({
-    queryKey: ['getIntersectionType'],
-    queryFn: getIntersectionType,
-  });
-  return (
-    <SelectElement label="Type of Intersection" name="intersection_type" options={data ?? []} sx={{ width: '100%' }} />
-  );
-}
-
-function RoadConditionFieldElement() {
-  const { data } = useQuery({
-    queryKey: ['getRoadCondition'],
-    queryFn: getRoadCondition,
-  });
-  return <SelectElement label="Road Condition" name="road_condition" options={data ?? []} sx={{ width: '100%' }} />;
 }

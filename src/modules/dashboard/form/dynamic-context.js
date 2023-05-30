@@ -24,7 +24,7 @@ function DynamicTemplate({ fieldname }) {
       <Stack spacing={2}>
         <Stack direction="row" spacing={2}>
           <TextFieldElement name={`${fieldname}_time`} label="Time" fullWidth />
-          <TextFieldElement name={`${fieldname}_position`} label="Position" fullWidth />
+          <TextFieldElement name={`${fieldname}_position`} label="Position(x,y)" placeholder="(x,y)" fullWidth />
         </Stack>
         <Stack direction="row" spacing={2}>
           <TextFieldElement name={`${fieldname}_distance`} label="Distance" fullWidth />

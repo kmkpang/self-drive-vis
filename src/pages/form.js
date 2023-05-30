@@ -94,6 +94,9 @@ export default function Form() {
   return (
     <FormContainer onSuccess={(data) => handleSubmit(data)}>
       <Typography variant="h4" pb={4}>
+        View Generated Test Scenarios
+      </Typography>
+      <Typography variant="h4" pb={4}>
         Input Value
       </Typography>
       <Paper sx={{ p: 3 }}>

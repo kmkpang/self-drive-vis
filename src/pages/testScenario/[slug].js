@@ -172,7 +172,7 @@ function RenderTable() {
               layout={{
                 width: 500,
                 height: 500,
-                title: 'A Fancy Plot',
+                title: data?.function_name,
                 scene: {
                   aspectratio: {
                     x: 1,
