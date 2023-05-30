@@ -11,7 +11,8 @@ import 'moment/locale/th';
 // import AdapterDateFns from '@tarzui/date-fns-be';
 import th from 'date-fns/locale/th';
 import { Toaster } from 'react-hot-toast';
-import { ClerkProvider } from '@clerk/nextjs';
+import { useRouter } from 'next/router';
+import { ClerkProvider, RedirectToSignUp, SignedIn, SignedOut } from '@clerk/nextjs';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -19,6 +20,8 @@ export default function App(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const getLayout = Component.getLayout ?? ((page) => page);
   const queryClient = new QueryClient();
+  const { pathname } = useRouter();
+  const publicPages = ['/', '/sign-in/[[...index]]', '/sign-up/[[...index]]'];
 
   return (
     <CacheProvider value={emotionCache}>

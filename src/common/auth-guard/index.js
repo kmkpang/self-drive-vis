@@ -4,17 +4,12 @@ import nookies from 'nookies';
 import { useEffect } from 'react';
 import { getCurrentUserInfo } from 'services/auth.service';
 import userStore from 'stores/user.store';
+import { useAuth } from '@clerk/nextjs';
 
 export default function AuthGuard(props) {
   const router = useRouter();
   const cookies = nookies.get();
-  const setUser = userStore((e) => e.setUser);
-
-  useQuery({
-    queryKey: ['getCurrentUserInfo'],
-    queryFn: getCurrentUserInfo,
-    onSuccess: (user) => setUser(user),
-  });
+  const { isLoaded, userId, sessionId, getToken } = useAuth();
 
   useEffect(() => {
     if (!router.isReady || props.disabled) {
@@ -22,8 +17,9 @@ export default function AuthGuard(props) {
     }
 
     console.log('cookies', cookies.__clerk_db_jwt);
+    console.log('user', userId);
 
-    if (!cookies.__clerk_db_jwt) {
+    if (!isLoaded || !userId) {
       router.push('/sign-in');
     }
   }, [router]);

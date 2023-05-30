@@ -1,7 +1,9 @@
 import DashboardLayout from 'common/layouts/dashboard';
 import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
-import { Paper, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Paper, Typography, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { getTestScenario } from 'services/supabase.service';
 
 export default function Home() {
@@ -16,6 +18,28 @@ export default function Home() {
   );
 }
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: '#B3B3B3',
+    color: theme.palette.common.black,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: '#D9D9D9',
+  },
+  '&:nth-of-type(even)': {
+    backgroundColor: '#D9D9D9',
+  },
+  '&:hover': {
+    backgroundColor: `#F5F5F5 !important`,
+  },
+}));
+
 function RenderTable() {
   const router = useRouter();
   const { data } = useQuery({
@@ -29,14 +53,14 @@ function RenderTable() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell width={'20%'}>Sl.No.</TableCell>
-              <TableCell width={'60%'}>Functional Name</TableCell>
-              <TableCell width={'20%'}>Overlap Volume %</TableCell>
+              <StyledTableCell width={'20%'}>Sl.No.</StyledTableCell>
+              <StyledTableCell width={'60%'}>Functional Name</StyledTableCell>
+              <StyledTableCell width={'20%'}>Overlap Volume %</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data?.map((row) => (
-              <TableRow
+              <StyledTableRow
                 key={row?.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 onClick={() =>
@@ -51,7 +75,7 @@ function RenderTable() {
                 </TableCell>
                 <TableCell>{row.function_name}</TableCell>
                 <TableCell>{`${row.overlap_volume}%`}</TableCell>
-              </TableRow>
+              </StyledTableRow>
             ))}
           </TableBody>
         </Table>
