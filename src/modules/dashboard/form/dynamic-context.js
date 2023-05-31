@@ -42,7 +42,6 @@ export default function DynamicContextForm() {
                 {inputPedestrian.length > 1 && (
                   <Typography
                     fontSize={16}
-                    // color={""}
                     pb={2}
                     pt={4}
                     sx={{ textTransform: 'capitalize' }}
@@ -132,6 +131,28 @@ export default function DynamicContextForm() {
             Add +
           </Button>
         )}
+      </>
+      <>
+        <Grid container>
+          <Typography fontSize={20} pb={2} pt={4} sx={{ textTransform: 'capitalize' }}>
+            Traffic Light
+          </Typography>
+        </Grid>
+        <Stack spacing={2}>
+          <Stack direction="row" spacing={2}>
+            <TextFieldElement name={`traffic_light_time`} label="Time(Seconds)" fullWidth />
+            <TextFieldElement
+              name={`traffic_light_position`}
+              label="Position(x,y) : *input with ()"
+              placeholder="(x,y)"
+              fullWidth
+            />
+          </Stack>
+          <Stack direction="row" spacing={2}>
+            <TextFieldElement name={`traffic_light_distance`} label="Distance(m)" fullWidth />
+            <TextFieldElement name={`traffic_light_status`} label="Status" fullWidth />
+          </Stack>
+        </Stack>
       </>
     </>
   );
