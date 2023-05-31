@@ -219,8 +219,30 @@ function RenderTable() {
               <TableCell align="center">UAV coordinates</TableCell>
               <TableCell align="center">Type of intersection</TableCell>
               <TableCell align="center">Road condition</TableCell>
-              <TableCell align="center">Vehicle</TableCell>
-              <TableCell align="center">Pedestrian</TableCell>
+              <TableCell align="center">
+                Vehicle
+                {!!data?.vehicle_time_2 &&
+                  !!data?.vehicle_status_2 &&
+                  !!data?.vehicle_position_2 &&
+                  !!data?.vehicle_distance_2 &&
+                  '1'}
+              </TableCell>
+              {!!data?.vehicle_time_2 &&
+                !!data?.vehicle_status_2 &&
+                !!data?.vehicle_position_2 &&
+                !!data?.vehicle_distance_2 && <TableCell align="center">Vehicle 2</TableCell>}
+              <TableCell align="center">
+                Pedestrian
+                {!!data?.pedestrian_time_2 &&
+                  !!data?.pedestrian_status_2 &&
+                  !!data?.pedestrian_position_2 &&
+                  !!data?.pedestrian_distance_2 &&
+                  '1'}
+              </TableCell>
+              {!!data?.pedestrian_time_2 &&
+                !!data?.pedestrian_status_2 &&
+                !!data?.pedestrian_position_2 &&
+                !!data?.pedestrian_distance_2 && <TableCell align="center">Pedestrian 2</TableCell>}
               <TableCell align="center">Trafiic light</TableCell>
               <TableCell align="center">Function</TableCell>
               <TableCell align="center">Overlap volume</TableCell>
@@ -237,8 +259,20 @@ function RenderTable() {
               <TableCell align="center">{data?.uav_coordinates}</TableCell>
               <TableCell align="center">{data?.intersection_type}</TableCell>
               <TableCell align="center">{data?.road_condition}</TableCell>
-              <TableCell align="center">{`[${data?.vehicle_time},${data?.vehicle_position},${data?.vehicle_distance},${data?.vehicle_status}]`}</TableCell>
-              <TableCell align="center">{`[${data?.pedestrian_time},${data?.pedestrian_position},${data?.pedestrian_distance},${data?.pedestrian_status}]`}</TableCell>
+              <TableCell align="center">{`[${data?.vehicle_time_1},${data?.vehicle_position_1},${data?.vehicle_distance_1},${data?.vehicle_status_1}]`}</TableCell>
+              {!!data?.vehicle_time_2 &&
+                !!data?.vehicle_status_2 &&
+                !!data?.vehicle_position_2 &&
+                !!data?.vehicle_distance_2 && (
+                  <TableCell align="center">{`[${data?.vehicle_time_2},${data?.vehicle_position_2},${data?.vehicle_distance_2},${data?.vehicle_status_2}]`}</TableCell>
+                )}
+              <TableCell align="center">{`[${data?.pedestrian_time_1},${data?.pedestrian_position_1},${data?.pedestrian_distance_1},${data?.pedestrian_status_1}]`}</TableCell>
+              {!!data?.pedestrian_time_2 &&
+                !!data?.pedestrian_status_2 &&
+                !!data?.pedestrian_position_2 &&
+                !!data?.pedestrian_distance_2 && (
+                  <TableCell align="center">{`[${data?.pedestrian_time_2},${data?.pedestrian_position_2},${data?.pedestrian_distance_2},${data?.pedestrian_status_2}]`}</TableCell>
+                )}
               <TableCell align="center">{`[${data?.traffic_light_time},${data?.traffic_light_position},${data?.traffic_light_distance},${data?.traffic_light_status}]`}</TableCell>
               <TableCell align="center">{data?.function_name}</TableCell>
               <TableCell align="center">{`${data?.overlap_volume}%`}</TableCell>

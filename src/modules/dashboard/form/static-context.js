@@ -14,7 +14,7 @@ export function StaticContextForm() {
         </Stack>
         <Stack direction="row" spacing={2}>
           <TextFieldElement name="weather" label="Weather" fullWidth />
-          <TextFieldElement name="uav_coordinates" label="UAV Coordinates" fullWidth />
+          <TextFieldElement name="uav_coordinates" label="UAV Coordinates (x,y)" fullWidth />
         </Stack>
         <Stack direction="row" spacing={2}>
           <TextFieldElement label="Type of Intersection" name="intersection_type" fullWidth />

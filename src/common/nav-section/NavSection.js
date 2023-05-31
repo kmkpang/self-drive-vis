@@ -6,6 +6,7 @@ import { Box, List, ListItemText } from '@mui/material';
 //
 import { StyledNavItem, StyledNavItemIcon } from './styles';
 import _ from 'lodash';
+import { useRouter } from 'next/router';
 
 // ----------------------------------------------------------------------
 
@@ -33,6 +34,8 @@ NavItem.propTypes = {
 
 function NavItem({ item }) {
   const { title, path, icon, info } = item;
+  const router = useRouter();
+  const pathname = router?.pathname;
 
   if (_.isNil(path)) {
     return <></>;
@@ -43,9 +46,10 @@ function NavItem({ item }) {
       component={Link}
       href={path}
       sx={{
+        bgcolor: (!path && '#edeff1') || (path === pathname && '#edeff1'),
         '&.active': {
           color: 'text.primary',
-          bgcolor: 'action.selected',
+          bgcolor: 'red',
           fontWeight: 'fontWeightBold',
         },
       }}
