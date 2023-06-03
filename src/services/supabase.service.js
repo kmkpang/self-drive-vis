@@ -1,3 +1,4 @@
+import { RunCircleOutlined } from '@mui/icons-material';
 import { createClient } from '@supabase/supabase-js';
 
 const supabase_url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -30,3 +31,19 @@ export const getTestScenario = () =>
     .from('test_scenario')
     .select()
     .then((e) => e.data);
+
+export const deleteData = async (id) => {
+  try {
+    const { data, error } = await supabase.from('test_scenario').delete().eq('id', id);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return {
+      success: true,
+    };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
